@@ -1,0 +1,1311 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر الأسلحة - W3VBV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #8B0000;
+            --secondary: #333;
+            --light: #f8f9fa;
+            --dark: #1a1a1a;
+            --gold: #FFD700;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background: url('aa1.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--light);
+            line-height: 1.6;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            z-index: -1;
+        }
+        
+        header {
+            background-color: rgba(139, 0, 0, 0.9);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(5px);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--gold);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-left: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-right: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+        
+        nav ul li a i {
+            margin-left: 5px;
+        }
+        
+        .cart-icon {
+            position: relative;
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--gold);
+            color: var(--dark);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        
+        main {
+            padding: 2rem 0;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 3rem 0;
+            margin-bottom: 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .search-bar {
+            max-width: 600px;
+
+margin: 0 auto;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 30px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            padding-right: 50px;
+        }
+        
+        .search-bar button {
+            position: absolute;
+            right: 5px;
+            top: 5px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .search-bar button:hover {
+            background-color: #a52a2a;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 2rem 0;
+            font-size: 2rem;
+            color: var(--gold);
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--gold);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 20px 0;
+        }
+        
+        .product-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s, box-shadow 0.3s;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+        }
+        
+        .product-specs {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .product-specs li {
+            padding: 0.3rem 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+            display: flex;
+        }
+        
+        .product-specs li:last-child {
+            border-bottom: none;
+        }
+        
+        .spec-name {
+            font-weight: bold;
+            margin-left: 0.5rem;
+            color: var(--gold);
+            min-width: 80px;
+        }
+        
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+        
+        .price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--gold);
+        }
+        
+        .add-to-cart {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            align-items: center;
+        }
+        
+        .add-to-cart:hover {
+            background-color: #a52a2a;
+        }
+        
+        .add-to-cart i {
+            margin-left: 5px;
+        }
+
+.categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 2rem 0;
+        }
+        
+        .category-btn {
+            background-color: rgba(139, 0, 0, 0.7);
+            color: white;
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-btn:hover, .category-btn.active {
+            background-color: var(--gold);
+            color: var(--dark);
+        }
+        
+        footer {
+            background-color: rgba(26, 26, 26, 0.9);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-column h3 {
+            color: var(--gold);
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-column ul li a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--gold);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--light);
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--gold);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 480px) {
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-gun"></i> W3VBV
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-home"></i> الرئيسية</a></li>
+                        <li><a href="#"><i class="fas fa-store"></i> المتجر</a></li>
+                        <li><a href="#"><i class="fas fa-newspaper"></i> الأخبار</a></li>
+                        <li><a href="#"><i class="fas fa-address-book"></i> اتصل بنا</a></li>
+                        <li>
+                            <a href="#" class="cart-icon">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="cart-count">0</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+<main>
+        <section class="hero">
+            <div class="container">
+                <h1>متجر الأسلحة الأفضل في المنطقة</h1>
+                <p>اكتشف أحدث الأسلحة والمعدات العسكرية بأسعار تنافسية وجودة عالية</p>
+                <div class="search-bar">
+                    <input type="text" placeholder="ابحث عن سلاح أو معدات...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="categories">
+    <a href="a.html" class="category-btn">الكل</a>
+    <a href="b.html" class="category-btn">بنادق هجومية</a>
+    <a href="c.html" class="category-btn">مسدسات</a>
+    <a href="d.html" class="category-btn">أسلحة قنص</a>
+    <a href="e.html" class="category-btn">أسلحة يدوية</a>
+    <a href="f.html" class="category-btn">متفجرات</a>
+
+            </div>
+
+            <h2 class="section-title">أحدث المنتجات</h2>
+            
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <img src="a1.jpeg" alt="بندقية M4A1" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">1- بندقية M4A1</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span> 5.56×45 ملم ناتو</li>
+                            <li><span class="spec-name">المدى:</span> 500 متر</li>
+                            <li><span class="spec-name">معدل الإطلاق:</span> 700-950 طلقة/دقيقة</li>
+                            <li><span class="spec-name">السعة:</span> 30 طلقة</li>
+                            <li><span class="spec-name">الاستخدام:</span> القوات العسكرية والشرطة</li>
+                        </ul>
+                        <div class="product-price">
+                            <span class="price">$1350</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <img src="a2.jpg" alt="AK-47" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">2- بندقية AK-47</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span> 7.62×39 ملم</li>
+                            <li><span class="spec-name">المدى:</span> 350 متر</li>
+                            <li><span class="spec-name">معدل الإطلاق:</span> 600 طلقة/دقيقة</li>
+                            <li><span class="spec-name">السعة:</span> 30 طلقة</li>
+                            <li><span class="spec-name">الاستخدام:</span> جيوش ومجموعات مسلحة</li>
+                        </ul>
+                        <div class="product-price">
+                            <span class="price">$1200</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <img src="a3.jpg" alt="بندقية قنص Barrett M82" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">3- Barrett M82</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span> .50 BMG</li>
+
+<li><span class="spec-name">المدى:</span> 1800 متر</li>
+                            <li><span class="spec-name">معدل الإطلاق:</span> نصف آلي</li>
+                            <li><span class="spec-name">السعة:</span> 10 طلقات</li>
+                            <li><span class="spec-name">الاستخدام:</span> عمليات القنص</li>
+                        </ul>
+                        <div class="product-price">
+                            <span class="price">#8000</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <img src="a4.jpg" alt="رشاش M249 SAW" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">4- رشاش M249 SAW</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span> 5.56×45 ملم</li>
+                            <li><span class="spec-name">المدى:</span> 1000 متر</li>
+                            <li><span class="spec-name">معدل الإطلاق:</span> 750-1000 ط/د</li>
+                            <li><span class="spec-name">السعة:</span> 200 طلقة</li>
+                            <li><span class="spec-name">الاستخدام:</span> دعم المشاة</li>
+                        </ul>
+                        <div class="product-price">
+                            <span class="price">#22000</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card">
+                    <img src="a12.jpg" alt="مسدس Glock 19" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">5- مسدس Glock 19</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span> 9×19 ملم</li>
+                            <li><span class="spec-name">المدى:</span> 50 متر</li>
+                            <li><span class="spec-name">معدل الإطلاق:</span> نصف آلي</li>
+                            <li><span class="spec-name">السعة:</span> 15 طلقة</li>
+                            <li><span class="spec-name">الاستخدام:</span> الشرطة</li>
+                        </ul>
+                        <div class="product-price">
+                            <span class="price">#530</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card">
+                    <img src="a6.jpg" alt="بندقية SPAS-12" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">6- بندقية SPAS-12</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span> 12 GA</li>
+                            <li><span class="spec-name">المدى:</span> 40-50 متر</li>
+                            <li><span class="spec-name">معدل الإطلاق:</span> نصف آلي/يدوي</li>
+                            <li><span class="spec-name">السعة:</span> 8 طلقات</li>
+                            <li><span class="spec-name">الاستخدام:</span> القوات الخاصة</li>
+
+
+</ul>
+                        <div class="product-price">
+                            <span class="price">#1500</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 7 -->
+                <div class="product-card">
+                <img src="a7.jpg" alt="قاذفة RPG-7" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">7- قاذفة RPG-7</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span>40-105 ملم (حسب الرأس الحربي)</li>
+                            <li><span class="spec-name">المدى:</span> 200 متر ضد المركبات، 500 متر ضد</li>
+                            <li><span class="spec-name">معدل الإطلاق:</span> طلقة واحدة كل 6-7 ثوانٍ</li>
+                            <li><span class="spec-name">آلية التشغيل:</span>قاذف مضاد للدروع</li>
+                            <li><span class="spec-name">سعة المخزن:</span>طلقة واحدة (مع إعادة التلقيم)</li>
+                              <li><span class="spec-name">الاستخدام::</span> ضد المركبات المدرعة والتحصينات</li>
+
+</ul><div class="product-price">
+                            <span class="price">#1550</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+<!-- Product 8 -->
+                <div class="product-card">
+                <img src="a8.jpeg" alt="قنمبلة يدوية M67" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">8- قنمبلة يدوية M67-7</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">الوزن:</span>400 غرام </li>
+                            <li><span class="spec-name"> المدى القتالي:</span> 30-40 متر</li>
+                            <li><span class="spec-name">الانفجار:</span> بعد الاطلاق 4.5 ثانيه</li>
+                            <li><span class="spec-name">شحنة الانفجار:</span>غرام من المتفجرات 180</li>
+                              <li><span class="spec-name">الاستخدام:</span> الهجوم الدفاعي والاشتباك القريب<li>
+
+</ul><div class="product-price">
+                            <span class="price">#45</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+<!-- Product 9 -->
+                <div class="product-card">
+                <img src="a9.jpg" alt="سيف كاتانا ياباني-9" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">9- سيف كاتانا ياباني</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">الطول:</span>100-110 سم</li>
+                            <li><span class="spec-name">المادة:</span> فولاذ تاماها جاني</li>
+                            <li><span class="spec-name">الحافة:</span> مفردة حادة</li>
+                            <li><span class="spec-name">الوزن:</span> كغم 1.5-1.2</li>
+                            <li><span class="spec-name">الاستخدام:</span> قتال الساموراي</li>
+
+</ul><div class="product-price">
+                            <span class="price">#5000</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+<!-- Product 10 -->
+                <div class="product-card">
+                <img src="a10.jpg" alt="خنجرFairbairn-Sykes" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">10- خنجرFairbairn-Sykes</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">الطول:</span>29سم</li>
+                            <li><span class="spec-name">المادة:</span> فولاذ مقاوم للصدأ</li>
+                            <li><span class="spec-name">الشكل:</span> نصل مزدوج حاد</li>           
+                              <li><span class="spec-name">الاستخدام:</span> القتال القريب وقوات العمليات الخاصة</li>
+
+</ul><div class="product-price">
+                            <span class="price">#130</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+<!-- Product 11 -->
+                <div class="product-card">
+                <img src="a11.jpg" alt="ننشاكو(سلاح نينجا) " class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">11-ننشاكو(سلاح نينجا)  </h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">الطول:</span>30-40 سم لكل عصا </li>
+                            <li><span class="spec-name">المادة:</span> خشب البلوط او المعدن</li>                                                                 
+                              <li><span class="spec-name">الاستخدام:</span> القتال اليدوي والدفاع عن النفس</li>
+
+</ul><div class="product-price">
+                            <span class="price">#25</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+<!-- Product 12 -->
+                <div class="product-card">
+                <img src="a5.jpg" alt=" مسدسDESERT-EAGEL" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">12- مسدسDESERT-EAGEL</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span> 50 AE او 44 magnum</li>
+                            <li><span class="spec-name">المدى:</span> 100 متر</li>
+                            <li><span class="spec-name">معدل الإطلاق:</span> نصق آلي</li>
+                            <li><span class="spec-name">آلية التشغيل:</span>غازية </li>
+                            <li><span class="spec-name">سعة المخزن:</span>7-9 طلقات</li>
+                              <li><span class="spec-name">الاستخدام:</span> القتال القريب والصيد</li>
+
+</ul><div class="product-price">
+                            <span class="price">#1350</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+<!-- Product 13 -->
+                <div class="product-card">
+                <img src="a13.jpg" alt="بندقية Gyrojet -13" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">13-بندقية Gyrojet </h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span> 13 مم (صواريخ مصغرة بدلاً من الرصاص)</li>
+                            <li><span class="spec-name">السعة:</span> 6 طلقات  </li>
+                            <li><span class="spec-name">الوزن:</span>1.5 كجم</li>
+                            <li><span class="spec-name">معدل الإطلاق::</span>صواريخ صغيرة بدلاً من الرصاص التقليدي.  </li>
+                            <li><span class="spec-name">الصوت:</span>صامت جدًا عند الإطلاق.</li>
+
+</ul><div class="product-price">
+                            <span class="price">#200</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+<!-- Product 14 -->
+                <div class="product-card">
+                <img src="a14.jpg" alt="مسدس LeMat Revolver  -14" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">14-مسدس– ثنائي الاستخدام   LeMat Revolver  </h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span> عيار42 للرصاص</li>
+                            <li><span class="spec-name">السعة:</span> 9 طلقات  </li>
+                            <li><span class="spec-name">الاستخدام:</span>الكونفدراليون في الحرب الأهلية الأمريكية</li>
+                            <li><span class="spec-name">العيار:</span>عيار 20 كمشط للشظايا.  </li>
+                            <li><span class="spec-name">السعة:</span>9 + 1 ماسورة إضافية للشوتغان.</li>
+
+</ul><div class="product-price">
+                            <span class="price">#1855</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+<!-- Product 15 -->
+                <div class="product-card">
+                <img src="a15.jpg" alt=بندقية Pancor Jackhammer– شوتغان أوتوماتيكي دوار  -15" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">15-بندقية Pancor Jackhammer – شوتغان أوتوماتيكي دوار   </h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span> 12 GA</li>
+                            <li><span class="spec-name">السعة:</span> 10 طلقات  </li>
+                            <li><span class="spec-name">الوزن:</span>4.57 كجم  </li>
+                            <li><span class="spec-name">الاسطوانه:</span>دوارة قابلة للإزالة.  </li>
+                            <li><span class="spec-name">آليه التشغيلآليه التشغيل:</span> أول شوتغان أوتوماتيكي دوار في العالم.</li>
+</ul><div class="product-price">
+                            <span class="price">#1350</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+<!-- Product 16 -->
+                <div class="product-card">
+                <img src="a16.jpeg" alt= HK G11 – سلاح بلا ظل  -16" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">16- بندقية HK G11 – سلاح بلا ظل  </h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span>  4.73×33 مم </li>
+                            <li><span class="spec-name">السعة:</span> 50 طلقة   </li>
+                            <li><span class="spec-name">المخزن:</span>داخلي </li>
+                            <li><span class="spec-name">معدل الاطلاق:</span>2000 طلقة/دقيقة.  </li>
+                         
+</ul><div class="product-price">
+                            <span class="price">#600</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+<!-- Product 17 -->
+                <div class="product-card">
+                <img src="a17.jpg" alt= مسدس Mateba Autorevolver -17" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">17-مسدس Mateba Autorevolver   </h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span>.357 ماغنوم / .44 ماغنوم </li>
+                            <li><span class="spec-name">السعة:</span> 6 طلقات    </li>
+                            <li><span class="spec-name">آليه العمل::</span>نصف آلي (يستخدم ارتداد الطلقة لتدوير الأسطوانة). </li>
+                            <li><span class="spec-name">التصميم :</span>فريد من قبل مصمم Desert Eagle.  </li>
+                         
+</ul><div class="product-price">
+                            <span class="price">#1150</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+<!-- Product 18 -->
+                <div class="product-card">
+                <img src="a18.jpg" alt= بندقية Metal Storm  -18" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">18- بندقية Metal Storm    </h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span>متعدد (يصل إلى 1.5 مليون طلقة/دقيقة نظريًا!). </li>
+                            <li><span class="spec-name">أليه العمل:</span>لا يوجد أجزاء متحركة – يعتمد على إلكترونيات لإطلاق الطلقات.  </li>
+                            <li><span class="spec-name">معدل اطلاق النار::</span>سجل رقمًا قياسيًا بإطلاق 180 طلقة في 0.01 ثانية.  . </li>
+                            <li><span class="spec-name">الاستخدام: :</span>لم يدخل الخدمة الفعلية بسبب تعقيده.   Desert Eagle.  </li>
+                         
+</ul><div class="product-price">
+                            <span class="price">#450,000</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+<!-- Product 19 -->
+                <div class="product-card">
+                <img src="a19.jpg" alt= بندقية Dardick -19" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">19- بندقية Dardick  </h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span>.38 "Tround" </li>
+                            <li><span class="spec-name">لشكل:</span>تصميم غريب لآلية التغذية </li>
+                            <li><span class="spec-name">شكل الرصاص:</span>مثلث. </li>
+                            <li><span class="spec-name">الاستخدام :</span>أول سلاح يستخدم خراطيش بلاستيكية مثلثة Desert Eagle.  </li>
+                         
+</ul><div class="product-price">
+                            <span class="price">#1600</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+<!-- Product 20 -->
+                <div class="product-card">
+                <img src="a20.jpg" alt=مسدس Welrod  -20" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">20- مسدس Welrod  </h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span>9×19 مم / .32 ACP   </li>
+                            <li><span class="spec-name"> التصميم::</span>صممه البريطانيون للمقاومة في الحرب العالمية الثانية </li>
+                            <li><span class="spec-name">الصوت::</span>صوت الإطلاق أهدأ من صوت الضغط على الزناد. </li>
+
+                         
+</ul><div class="product-price">
+                            <span class="price">#6500</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+<!-- Product 21 -->
+                <div class="product-card">
+                <img src="a21.jpg" alt= بندقية Anzio 20mm Rifle  -21" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">21- بندقية Anzio 20mm Rifle  </h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span>.20×102 مم </li>
+                            <li><span class="spec-name">الميزة:</span>قناصة مضادة للدروع </li>
+                            <li><span class="spec-name">معدل اطلاق النار:</span>تطلق قذائف متفجرة. </li>
+                            <li><span class="spec-name">المدى :</span>تصل لمدى 4500 متر.  </li>
+                            <li><span class="spec-name">الاستخدام: :</span>تستخدم لاختراق المركبات والمباني.  </li>
+</ul><div class="product-price">
+                            <span class="price">#13,000</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+<!-- Product 22 -->
+                <div class="product-card">
+                <img src="a22.jpeg" alt=" FN SCAR-H" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">22- FN SCAR-H</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span> 7.62×51mm NATO</li>
+                            <li><span class="spec-name">المدى:</span>800متر</li>
+                            <li><span class="spec-name">الوزن:</span> 3.5kg</li>
+                            <li><span class="spec-name">السعه:</span> 20 طلقة</li>
+
+</ul><div class="product-price">
+                            <span class="price">#3,200</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+<!-- Product 23 -->
+                <div class="product-card">
+                <img src="a23.jpeg" alt=""HK416" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">23-"HK416</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span>  5.56×45mm</li>
+                            <li><span class="spec-name">المدى:</span>600m</li>
+                            <li><span class="spec-name">الوزن:</span>  3.02kg</li>
+                            <li><span class="spec-name">السعه:</span> 30 طلقة</li>
+
+</ul><div class="product-price">
+                            <span class="price">#2,800</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+<!-- Product 24 -->
+                <div class="product-card">
+                <img src="a24.jpeg" alt="Steyr AUG" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">24-"Steyr AUG</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span> 5.56×45mm</li>
+                            <li><span class="spec-name">المدى:</span>500m</li>
+                            <li><span class="spec-name">الوزن:</span>3.6kg</li>
+                            <li><span class="spec-name">السعه:</span> 30/42 طلقة</li>
+
+</ul><div class="product-price">
+                            <span class="price">#2,500</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+<!-- Product 25 -->
+                <div class="product-card">
+                <img src="a25.jpeg" alt="Tavor X95" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">25-"Tavor X95</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span>5.56×45mm NATO</li>
+                            <li><span class="spec-name">المدى:</span>600m</li>
+                            <li><span class="spec-name">الوزن:</span> 3.27kg</li>
+                            <li><span class="spec-name">السعه:</span> 30 طلقة</li>
+
+</ul><div class="product-price">
+                            <span class="price">#2,100</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+<!-- Product 26 -->
+                <div class="product-card">
+                <img src="a26.jpeg" alt="Sig Sauer P320" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">26-"Sig Sauer P320</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span> 9×19mm</li>
+                           
+                            <li><span class="spec-name">الوزن:</span>  833g</li>
+                            <li><span class="spec-name">السعه:</span> 17 طلقة</li>
+                            <li><span class="spec-name">نظام التشغيل:</span>  نصف آلي</li>
+
+</ul><div class="product-price">
+                            <span class="price">#650</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+<!-- Product 27 -->
+                <div class="product-card">
+                <img src="a27.jpeg" alt="Beretta 92FS" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">27-"Beretta 92FS</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span> 9×19mm</li>
+                            
+                            <li><span class="spec-name">الوزن:</span>  975g</li>
+                            <li><span class="spec-name">السعه:</span> 15 طلقة</li>
+                            <li><span class="spec-name">نظام التشغيل:</span>  نصف آلي</li>
+
+</ul><div class="product-price">
+                            <span class="price">#850</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+<!-- Product 28 -->
+                <div class="product-card">
+                <img src="a28.jpeg" alt="Smith & Wesson M&P" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">28-"Smith & Wesson M&P</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span>.40 S&W</li>
+                            
+                            <li><span class="spec-name">الوزن:</span>  > 737g</li>
+                            <li><span class="spec-name">السعه:</span> 15 طلقة</li>
+                            <li><span class="spec-name">نظام التشغيل:</span>  نصف آلي</li>
+
+</ul><div class="product-price">
+                            <span class="price">#720</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+<!-- Product 29 -->
+                <div class="product-card">
+                <img src="a29.jpeg" alt="CheyTac M200" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">29-"CheyTac M200</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span>408 CheyTac</li>
+                            <li><span class="spec-name">المدى:</span> 2,500m</li>
+                            <li><span class="spec-name">الوزن:</span>  > 14kg</li>
+                            <li><span class="spec-name">السعه:</span>7 طلقات</li>
+                            
+
+</ul><div class="product-price">
+                            <span class="price">#13,000</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+<!-- Product 30 -->
+                <div class="product-card">
+                <img src="a30.jpeg" alt="Barrett MRAD" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">30-"Barrett MRAD</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span>338 Lapua</li>
+                            <li><span class="spec-name">المدى:</span>1,800m</li>
+                            <li><span class="spec-name">الوزن:</span>  >  6.35kg</li>
+                            <li><span class="spec-name">السعه:</span>10 طلقات</li>
+                            
+
+</ul><div class="product-price">
+                            <span class="price">#6,500</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+<!-- Product 31 -->
+                <div class="product-card">
+                <img src="a31.jpg" alt="Accuracy International AXMC" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">31-"Accuracy International AXMC</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span>308 Winchester</li>
+                            <li><span class="spec-name">المدى:</span> 1,500m</li>
+                            <li><span class="spec-name">الوزن:</span>  > 6.9kg</li>
+                            <li><span class="spec-name">السعه:</span>5 طلقات</li>
+                            
+
+</ul><div class="product-price">
+                            <span class="price">#8,200</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+<!-- Product 32 -->
+                <div class="product-card">
+                <img src="a32.jpeg" alt=""Sako TRG-42" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">32-"Sako TRG-42"</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">العيار:</span>338 Lapua Magnum</li>
+                            <li><span class="spec-name">المدى:</span> 1,500m</li>
+                            <li><span class="spec-name">الوزن:</span>  >  5.1kg</li>
+                            <li><span class="spec-name">السعه:</span>5 طلقات</li>
+                            
+
+</ul><div class="product-price">
+                            <span class="price">#5,800</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+<!-- Product 33 -->
+                <div class="product-card">
+                <img src="a33.jpeg" alt="Karambit" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">33-"Karambit"</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">النوع:</span>خنجر منحني</li>
+                            <li><span class="spec-name">الطول:</span> 20cm</li>
+                            <li><span class="spec-name">المادة:</span>  > فولاذ D2</li>
+                            <li><span class="spec-name">الوزن:</span>210g</li>
+                            
+
+</ul><div class="product-price">
+                            <span class="price">#150</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+<!-- Product 34 -->
+                <div class="product-card">
+                <img src="aaa34.jpeg" alt="Tactical Tomahawk" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">34-"Tactical Tomahawk"</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">النوع:</span>فأس تكتيكي</li>
+                            <li><span class="spec-name">الطول:</span> 40cm</li>
+                            <li><span class="spec-name">المادة:</span>  >  فولاذ 5160</li>
+                            <li><span class="spec-name">الوزن:</span> 680g</li>
+                            
+
+</ul><div class="product-price">
+                            <span class="price">#220</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+<!-- Product 35 -->
+                <div class="product-card">
+                <img src="a35.jpeg" alt="Brass Knuckles" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">35-"Brass Knuckles"</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">النوع:</span>سلاح كف</li>
+                            <li><span class="spec-name">الطول:</span>12cm</li>
+                            <li><span class="spec-name">المادة:</span>  >  فولاذ مجلفن</li>
+                            <li><span class="spec-name">الوزن:</span>300g</li>
+                            
+
+</ul><div class="product-price">
+                            <span class="price">#80</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+<!-- Product 36 -->
+                <div class="product-card">
+                <img src="a36.jpeg" alt="Tactical Pen" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">36-"Tactical Pen"</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">النوع:</span> قلم تكتيكي</li>
+                            <li><span class="spec-name">الطول:</span> 14cm</li>
+                            <li><span class="spec-name">المادة:</span>  > ألومنيوم 6061</li>
+                            <li><span class="spec-name">الوزن:</span> 90g</li>
+                            
+
+</ul><div class="product-price">
+                            <span class="price">#80</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+<!-- Product 37 -->
+                <div class="product-card">
+                <img src="a37.jpeg" alt=""Combat Knife" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">37-"Combat Knife"</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">النوع:</span>سكين قتالي</li>
+                            <li><span class="spec-name">الطول:</span>  30cm</li>
+                            <li><span class="spec-name">المادة:</span>  >فولاذ 440C</li>
+                            <li><span class="spec-name">الوزن:</span> 350g</li>
+                            
+
+</ul><div class="product-price">
+                            <span class="price">#120</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+<!-- Product 38 -->
+                <div class="product-card">
+                <img src="a38.jpeg" alt="C4" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">38-"C4"</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">الوزن:</span> 1kg</li>
+                            <li><span class="spec-name">المدى:</span> 50m</li>
+                            <li><span class="spec-name">نوع التفجير:</span>  > عن بعد</li>
+                            <li><span class="spec-name">التدمير:</span> 50m²</li>
+                            
+
+</ul><div class="product-price">
+                            <span class="price">#450</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+<!-- Product 39 -->
+                <div class="product-card">
+                <img src="a39.jpg" alt=""Semtex" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">39-""Semtex"</h3>
+                        <ul class="product-specs">
+                            <li><span class="spec-name">الوزن:</span>250g</li>
+                            <li><span class="spec-name">المدى:</span> 40m</li>
+                            <li><span class="spec-name">نوع التفجير:</span>  > توقيت</li>
+                            <li><span class="spec-name">التدمير:</span> 25m²</li>
+                            
+
+</ul><div class="product-price">
+                            <span class="price">#300</span>
+                            <button class="add-to-cart">
+                                أضف للسلة <i class="fas fa-cart-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+    <script>
+        // إضافة تفاعلية بسيطة لعربة التسوق
+        let cartCount = 0;
+        const cartButtons = document.querySelectorAll('.add-to-cart');
+        const cartCounter = document.querySelector('.cart-count');
+        
+        cartButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                cartCount++;
+                cartCounter.textContent = cartCount;
+                button.disabled = true;
+                button.textContent = 'تم الإضافة';
+            });
+        });
+    </script>
+
